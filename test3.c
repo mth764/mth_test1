@@ -203,3 +203,27 @@
 //	} while (i);
 //	return 0;
 //}
+//求十个数的最大值
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main()
+{
+	int i = 0;
+	int arr[10] = { 0 };
+	printf("请输入十个数\n");
+	for (i = 0; i < 10; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+
+	int max = arr[0];
+	for (i = 1; i < 10; i++)
+	{
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+	}
+	printf("max=%d\n", max);
+	return 0;
+}
