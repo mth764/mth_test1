@@ -204,26 +204,69 @@
 //	return 0;
 //}
 //求十个数的最大值
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
-int main()
-{
-	int i = 0;
-	int arr[10] = { 0 };
-	printf("请输入十个数\n");
-	for (i = 0; i < 10; i++)
-	{
-		scanf("%d", &arr[i]);
-	}
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main()
+//{
+//	int i = 0;
+//	int arr[10] = { 0 };
+//	printf("请输入十个数\n");
+//	for (i = 0; i < 10; i++)
+//	{
+//		scanf("%d", &arr[i]);
+//	}
 
-	int max = arr[0];
-	for (i = 1; i < 10; i++)
-	{
-		if (max < arr[i])
-		{
-			max = arr[i];
-		}
-	}
-	printf("max=%d\n", max);
-	return 0;
-}
+//	int max = arr[0];
+//	for (i = 1; i < 10; i++)
+//	{
+//		if (max < arr[i])
+//		{
+//			max = arr[i];
+//		}
+//	}
+//	printf("max=%d\n", max);
+//	return 0;
+//}
+//求两个数的最大公约数
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main()
+//{
+//	int m = 0;
+//	int n = 0;
+//	int i = 0;
+//	int c = 0;
+//	printf("请输入两个数:->\n");
+//	scanf("%d %d", &m, &n);
+//	if (m >= n)
+//		c = n;
+//	else
+//		c = m;
+//	for (i = c; i >= 1; i--)
+//	{
+//		if (m % i == 0 && n % i == 0)
+//		{
+//			printf("最大公约数为:%d\n", i);
+//			break;
+//		}
+//
+//	}
+//	return 0;
+//}
+//求出'1/1-1/2+1/3-1/4+1/5 …… + 1/99 - 1/100'之和为
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <stdio.h>
+//int main()
+//{
+//	int i = 0;
+//	double sum = 0;
+//	for (i = 1; i <= 100; i++)
+//	{
+//		if (i % 2 == 0)
+//			sum += (-1.0 / i);
+//		else
+//			sum += 1.0 / i;
+//	}
+//	printf("'1/1-1/2+1/3-1/4+1/5 …… + 1/99 - 1/100'之和为:-> %f\n", sum);
+//	return 0;
+//}
