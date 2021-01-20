@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TestMain.c">
+    <ClCompile Include="List.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="List.c">
+    <ClCompile Include="SeqList.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

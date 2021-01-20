@@ -44,6 +44,8 @@ SListNode* SListFind(SList* plist, ElemType key);
 void SListsort(SList* plist);
 //转置
 void SListreverse(SList* plist);
+//清除
+void SListclear(SList* plist);
 // 单链表在pos位置之后插入x
 // 分析思考为什么不在pos位置之前插入？
 void SListInsertAfter(SListNode* pos, ElemType key);
@@ -199,6 +201,7 @@ void SListInsert_val(SList* plist, int key)
 //按值删除
 void SListDelete_val(SList* plist, int key)
 {
+	assert(plist);
 	SListNode* p = plist->head;
 	SListNode* pre = NULL;
 	while (p != NULL && p->data != key)
@@ -241,10 +244,37 @@ void SListsort(SList* plist)
 //转置
 void SListreverse(SList* plist)
 {
-	SListNode* p = plist->head;
-	while (p->next != NULL)
+	assert(plist);
+	SListNode* p, *q;
+	if (plist->head == NULL)
+		return;
+	else if (plist->head->next == NULL)
+		return;
+	else
 	{
+		p = plist->head->next;
+		plist->head->next = NULL;
+		q = p;
+		while (q != NULL)
+		{
+			q = q->next;
+			p->next = plist->head;
+			plist->head = p;
+			p = q;
+		}
+	}
+}
 
+//清除
+void SListclear(SList* plist)
+{
+	assert(plist);
+	SListNode* p = plist->head;
+	while (p != NULL)
+	{
+		plist->head = p->next;
+		free(p);
+		p = plist->head;
 	}
 }
 

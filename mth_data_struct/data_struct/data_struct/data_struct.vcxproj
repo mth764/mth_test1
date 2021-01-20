@@ -77,7 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="List.c" />
-    <ClCompile Include="TestMain.c" />
+    <ClCompile Include="SeqList.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h" />
