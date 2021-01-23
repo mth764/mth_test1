@@ -76,10 +76,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DCList.c" />
     <ClCompile Include="List.c" />
     <ClCompile Include="SeqList.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DCList.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="SeqList.h" />
     <ClInclude Include="Sysutil.h" />
