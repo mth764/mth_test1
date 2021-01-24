@@ -78,13 +78,17 @@
   <ItemGroup>
     <ClCompile Include="DCList.c" />
     <ClCompile Include="List.c" />
+    <ClCompile Include="queue.c" />
     <ClCompile Include="SeqList.c" />
+    <ClCompile Include="stack.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DCList.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="queue.h" />
     <ClInclude Include="SeqList.h" />
     <ClInclude Include="Sysutil.h" />
+    <ClInclude Include="stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

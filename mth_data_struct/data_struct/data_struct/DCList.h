@@ -1,5 +1,5 @@
-#ifndef _LIST_H_
-#define _LIST_H_
+#ifndef _DCLIST_H_
+#define _DCLIST_H_
 #include"Sysutil.h"
 
 #define ElemType int
