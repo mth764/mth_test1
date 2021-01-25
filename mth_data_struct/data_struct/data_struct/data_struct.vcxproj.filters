@@ -30,6 +30,9 @@
     <ClCompile Include="queue.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="tree.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Sysutil.h">
@@ -48,6 +51,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="OJ.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

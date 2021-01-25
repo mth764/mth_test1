@@ -81,6 +81,7 @@
     <ClCompile Include="queue.c" />
     <ClCompile Include="SeqList.c" />
     <ClCompile Include="stack.c" />
+    <ClCompile Include="tree.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DCList.h" />
@@ -89,6 +90,8 @@
     <ClInclude Include="SeqList.h" />
     <ClInclude Include="Sysutil.h" />
     <ClInclude Include="stack.h" />
+    <ClInclude Include="tree.h" />
+    <ClInclude Include="OJ.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
