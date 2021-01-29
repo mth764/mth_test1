@@ -21,10 +21,14 @@ void BinTreeInit(BinTree *t);
 void BinTreeCreate_1(BinTree *t);
 //BinTree BinTreeCreate_2();
 //BinTree BinTreeCreate_3(const char *str, int *i);
-//遍历
+//递归遍历
 void PreOrder(BinTree t);
 void InOrder(BinTree t);
 void PastOrder(BinTree t);
+//非递归遍历
+void InOrder_Nor(BinTree t);
+void InOrder_Nor(BinTree t);
+void PastOrder_Nor(BinTree t);
 //实现功能函数定义
 void BinTreeInit(BinTree *t)
 {
@@ -109,4 +113,33 @@ void PastOrder(BinTree t)
 //		BinTreeCreate_1(&((*t)->leftChild));
 //	}
 //}
+#include "stack.h"
+void InOrder_Nor(BinTree t)
+{
+	if (t != NULL)
+	{
+		LinkStack st;
+		LinkStackInit(&st);
+		LinkStackPush(&st, t);
+		if (t->leftChild!=NULL)
+		while (!LinkStackEmpty(&st))
+		{
+			BinTreeNode* p = LinkStackTop(&st);
+			if (p->leftChild != NULL)
+				LinkStackPush(&st, p->leftChild);
+			else
+			{
+				printf("%c", p->data);
+				void LinkStackPop(LinkStack *pst);
+				if (p->rightChild!=NULL)
+					LinkStackPush(&st, p->leftChild)
+			}
+				
+			LinkStackPush(&st, t);
+		}
+	}
+}
+void InOrder_Nor(BinTree t);
+void InOrder_Nor(BinTree t);
+void PastOrder_Nor(BinTree t);
 #endif      //_TREE_H_

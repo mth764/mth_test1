@@ -1,3 +1,53 @@
+///////////////////链表/////////////////////////////
+//1、给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+struct ListNode *detectCycle(struct ListNode *head)
+{
+	if (head == NULL)
+		return NULL;
+	struct ListNode *fast = head;
+	struct ListNode *slow = head;
+
+	while (fast != NULL&&fast->next != NULL)
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+
+		if (slow == fast)
+			break;
+	}
+	if (fast == NULL || fast->next == NULL)
+		return NULL;
+	fast = head;
+	while (fast != slow)
+	{
+		fast = fast->next;
+		slow = slow->next;
+	}
+	return slow;
+}
+//2、给定一个链表，判断链表中是否有环。如果链表中存在环，则返回 true 。 否则，返回 false 。
+/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     struct ListNode *next;
+* };
+*/
+bool hasCycle(struct ListNode *head)
+{
+	if (head == NULL)
+		return false;
+	struct ListNode *fast = head;
+	struct ListNode *slow = head;
+	while (fast&&fast->next)
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+		if (slow == fast)
+			return true;
+	}
+	return false;
+}
 #include "Sysutil.h"
 //1、括号匹配问题
 #define StackElemType char
