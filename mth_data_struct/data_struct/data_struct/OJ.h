@@ -48,6 +48,35 @@ bool hasCycle(struct ListNode *head)
 	}
 	return false;
 }
+//3、对于一个链表，请设计一个时间复杂度为O(n),
+//额外空间复杂度为O(1)的算法，判断其是否为回文结构。
+bool chkPalindrome(ListNode* A)
+{
+	int arr[900] = { 0 };
+	int i = 0;
+	int start, end;
+	if (A == NULL)
+		return true;
+	ListNode* p = A;
+	while (p != NULL)
+	{
+		arr[i++] = p->val;
+		p = p->next;
+	}
+	start = 0;
+	end = i - 1;
+	while (start<end)
+	{
+		if (arr[start] == arr[end])
+		{
+			start++;
+			end--;
+		}
+		else
+			return false;
+	}
+	return true;
+}
 #include "Sysutil.h"
 //1、括号匹配问题
 #define StackElemType char

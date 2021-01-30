@@ -19,6 +19,8 @@ typedef BinTreeNode* BinTree;
 void BinTreeInit(BinTree *t);
 //树的创建
 void BinTreeCreate_1(BinTree *t);
+BinTreeNode* BinTreeCreate_2();
+void BinTreeCreate_3(BinTree *t);
 //BinTree BinTreeCreate_2();
 //BinTree BinTreeCreate_3(const char *str, int *i);
 //递归遍历
@@ -48,6 +50,23 @@ void BinTreeCreate_1(BinTree *t)
 		BinTreeCreate_1(&((*t)->leftChild));
 		BinTreeCreate_1(&((*t)->rightChild));
 	}
+}
+BinTreeNode* BinTreeCreate_2()
+{
+	BinTreeNode* t;
+	TreeElemType item;
+	scanf("%c", &item);
+	if (item == '#')
+		t = NULL;
+	else
+	{
+		t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+		assert(t != NULL);
+		t->data = item;
+		t->leftChild=BinTreeCreate_2();
+		t->rightChild = BinTreeCreate_2();
+	}
+	return t;
 }
 void PreOrder(BinTree t)
 {
@@ -113,32 +132,32 @@ void PastOrder(BinTree t)
 //		BinTreeCreate_1(&((*t)->leftChild));
 //	}
 //}
-#include "stack.h"
-void InOrder_Nor(BinTree t)
-{
-	if (t != NULL)
-	{
-		LinkStack st;
-		LinkStackInit(&st);
-		LinkStackPush(&st, t);
-		if (t->leftChild!=NULL)
-		while (!LinkStackEmpty(&st))
-		{
-			BinTreeNode* p = LinkStackTop(&st);
-			if (p->leftChild != NULL)
-				LinkStackPush(&st, p->leftChild);
-			else
-			{
-				printf("%c", p->data);
-				void LinkStackPop(LinkStack *pst);
-				if (p->rightChild!=NULL)
-					LinkStackPush(&st, p->leftChild)
-			}
-				
-			LinkStackPush(&st, t);
-		}
-	}
-}
+//#include "stack.h"
+//void InOrder_Nor(BinTree t)
+//{
+//	if (t != NULL)
+//	{
+//		LinkStack st;
+//		LinkStackInit(&st);
+//		LinkStackPush(&st, t);
+//		if (t->leftChild!=NULL)
+//		while (!LinkStackEmpty(&st))
+//		{
+//			BinTreeNode* p = LinkStackTop(&st);
+//			if (p->leftChild != NULL)
+//				LinkStackPush(&st, p->leftChild);
+//			else
+//			{
+//				printf("%c", p->data);
+//				void LinkStackPop(LinkStack *pst);
+//				if (p->rightChild != NULL)
+//					LinkStackPush(&st, p->leftChild);
+//			}
+//				
+//			LinkStackPush(&st, t);
+//		}
+//	}
+//}
 void InOrder_Nor(BinTree t);
 void InOrder_Nor(BinTree t);
 void PastOrder_Nor(BinTree t);
