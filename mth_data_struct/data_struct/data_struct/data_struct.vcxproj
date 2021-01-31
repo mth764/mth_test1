@@ -77,6 +77,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DCList.c" />
+    <ClCompile Include="heap.c" />
     <ClCompile Include="List.c" />
     <ClCompile Include="queue.c" />
     <ClCompile Include="SeqList.c" />
@@ -85,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DCList.h" />
+    <ClInclude Include="heap.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="SeqList.h" />

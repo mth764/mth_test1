@@ -20,7 +20,7 @@ void BinTreeInit(BinTree *t);
 //树的创建
 void BinTreeCreate_1(BinTree *t);
 BinTreeNode* BinTreeCreate_2();
-void BinTreeCreate_3(BinTree *t);
+BinTreeNode* BinTreeCreate_3(char str, int* i);
 //BinTree BinTreeCreate_2();
 //BinTree BinTreeCreate_3(const char *str, int *i);
 //递归遍历
@@ -67,6 +67,22 @@ BinTreeNode* BinTreeCreate_2()
 		t->rightChild = BinTreeCreate_2();
 	}
 	return t;
+}
+BinTreeNode* BinTreeCreate_3(const char* str, int* i)
+{
+	if (str[*i] == '#' || str[*i] == '\0')
+		return NULL;
+	else
+	{
+		BinTreeNode *t = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+		assert(t != NULL);
+		t->data = str[*i];
+		(*i)++;
+		t->leftChild = BinTreeCreate_2(str,i);
+		(*i)++;
+		t->rightChild = BinTreeCreate_2(str,i);
+		return t;
+	}
 }
 void PreOrder(BinTree t)
 {

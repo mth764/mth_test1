@@ -620,6 +620,7 @@ void myCircularQueueFree(MyCircularQueue* obj)
 	free(obj);
 }
 ///////////////////////////////////////////////////////////////////
+//复杂度：：
 //数组nums包含从0到n的所有整数，但其中缺了一个。
 //请编写代码找出那个缺失的整数。你有办法在O(n)时间内完成吗？
 int missingNumber(int* nums, int numsSize)
@@ -635,3 +636,27 @@ int missingNumber(int* nums, int numsSize)
 	}
 	return sum;
 }
+//2、一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。
+//请写程序找出这两个只出现一次的数字。
+//要求时间复杂度是O(n)，空间复杂度是O(1)。
+int* singleNumbers(int* nums, int numsSize, int* returnSize)
+{
+	int tmp = 0;
+	int index = 1;
+	*returnSize = 2;
+	int* arr = (int*)malloc(sizeof(int)* 2);
+	memset(arr, 0, sizeof(int)* 2);
+	for (int i = 0; i<numsSize; i++)
+	{
+		tmp = tmp^nums[i];
+	}
+	while ((index&tmp) == 0)
+		index = index << 1;
+	for (int i = 0; i<numsSize; i++)
+	{
+		if ((nums[i] & index) != 0)
+			arr[0] = arr[0] ^ nums[i];
+		else
+			arr[1] = arr[1] ^ nums[i];
+	}
+	return arr;
