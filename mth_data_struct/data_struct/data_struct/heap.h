@@ -40,13 +40,13 @@ void HeapSort(int* a, int n);
 // 找最小的前K个，建立K个数的大堆
 void PrintTopK(int* a, int n, int k);
 void TestTopk();
-void HeapShow(Heap* hp,int start,int end);
+void HeapShow(Heap* hp);
 
 
 //////////////////////////////////////////////////
-void _AdjustUp(Heap* hp)
+void _AdjustUp1(Heap* hp,int start)
 {
-	int j = hp->_size;
+	int j = start;
 	int i = (j - 1) / 2;
 	while (j > 0)
 	{
@@ -62,9 +62,27 @@ void _AdjustUp(Heap* hp)
 			break;
 	}
 }
-void _AdjustDown(Heap* hp)
+void _AdjustUp2(Heap* hp,int start)
 {
-	int i = 0;
+	int j = start;
+	int i = (j - 1) / 2;
+	int tmp = hp->_a[j];
+	while (j > 0)
+	{
+		if (tmp < hp->_a[i])
+		{
+			hp->_a[j] = hp->_a[i];
+			j = i;
+			i = (j - 1) / 2;
+		}
+		else
+			break;
+	}
+	hp->_a[j] = tmp;
+}
+void _AdjustDown1(Heap* hp,int start)
+{
+	int i = start;
 	int j = 2 * i + 1;
 	while (j < hp->_size)
 	{
@@ -81,6 +99,27 @@ void _AdjustDown(Heap* hp)
 		j = 2 * i + 1;
 	}
 }
+void _AdjustDown2(Heap* hp,int start)
+{
+	int i = start;
+	int j = 2 * i + 1;
+	int tmp = hp->_a[i];
+	while (j < hp->_size)
+	{
+		if (j + 1<hp->_size && hp->_a[j] > hp->_a[j + 1])
+			j = j + 1;
+
+		if (hp->_a[j] < tmp)
+		{
+			hp->_a[i] = hp->_a[j];
+			i = j;
+			j = 2 * i + 1;
+		}
+		else
+			break;	
+	}
+	hp->_a[i] = tmp;
+}
 bool HeapIsfull(Heap* hp)
 {
 	return hp->_size >= hp->_capacity;
@@ -93,6 +132,7 @@ void HeapInit(Heap* hp,int n)
 {
 	hp->_a = (HPDataType*)malloc(sizeof(HPDataType)*n);
 	assert(hp->_a != NULL);
+	memset(hp->_a, 0, sizeof(HPDataType)*n);
 	hp->_capacity = n;
 	hp->_size = 0;
 
@@ -107,7 +147,23 @@ void HeapShow(Heap* hp)
 }
 void HeapCreate(Heap* hp, HPDataType* a, int n)
 {
+	hp->_a = (HPDataType*)malloc(sizeof(HPDataType)*n);
+	assert(hp->_a != NULL);
+	memset(hp->_a, 0, sizeof(HPDataType)*n);
+	hp->_capacity = n;
+	hp->_size = n;
 
+	for (int i = 0; i < n; i++)
+	{
+		hp->_a[i] = a[i];
+	}
+	
+	int curpos = (n / 2) - 1;
+	while (curpos >= 0)
+	{
+		_AdjustDown2(hp, curpos);
+		curpos--;
+	}
 }
 void HeapPush(Heap* hp, HPDataType x)
 {
@@ -117,7 +173,8 @@ void HeapPush(Heap* hp, HPDataType x)
 		return;
 	}
 	hp->_a[hp->_size] = x;
-	_AdjustUp(hp);
+	//_AdjustUp1(hp);
+	_AdjustUp2(hp,hp->_size);
 	hp->_size++;
 }
 HPDataType HeapTop(Heap* hp)
@@ -134,8 +191,82 @@ void HeapPop(Heap* hp)
 	}
 	hp->_size--;
 	hp->_a[0] = hp->_a[hp->_size];
-	_AdjustDown(hp);
-	
+	//_AdjustDown1(hp);
+	_AdjustDown2(hp,0);
+}
+int HeapSize(Heap* hp)
+{
+	return hp->_size;
+}
+
+void Heapclear(Heap* hp)
+{
+	hp->_size = 0;
+}
+void HeapDestory(Heap* hp)
+{
+	free(hp->_a);
+	hp->_a = NULL;
+	hp->_capacity = hp->_size = 0;
+}
+//上调为大堆
+void _AdjustDown3(int* a, int start, int n)
+{
+	int i = start;
+	int j = 2 * i + 1;
+	int tmp = a[i];
+	while (j < n)
+	{
+		if (j + 1<n && a[j] < a[j + 1])
+			j = j + 1;
+
+		if (a[j] > tmp)
+		{
+			a[i] = a[j];
+			i = j;
+			j = 2 * i + 1;
+		}
+		else
+			break;
+	}
+	a[i] = tmp;
+}
+//堆排序（由小到大为例）
+void HeapSort(int* a, int n)
+{
+	/*1、上调为大堆
+	  2、堆顶元素与堆尾元素互换
+	  3、出堆*/
+	int curpos = (n / 2) - 1;
+	while (curpos >= 0)
+	{
+		_AdjustDown3(a, curpos,n);
+		curpos--;
+	}
+	int end = n - 1;
+	while (end > 0)
+	{
+		int tmp = a[0];
+		a[0] = a[end];
+		a[end] = tmp;
+		end--;
+		_AdjustDown3(a, 0, --n);
+	}
+}
+//最大的前k个
+void PrintTopK(int* a, int n, int k)
+{
+	HeapSort(a, n);
+	for (int i = 0; i < k; i++)
+	{
+		printf(" %d", a[i]);
+	}
+}
+void TestTopk()
+{
+	int nums[10] = { 27, 15, 19, 18, 28, 34, 65, 49, 25, 37 };
+	int n = sizeof(nums) / sizeof(int);
+	PrintTopK(nums, n, 5);
 }
 
 
