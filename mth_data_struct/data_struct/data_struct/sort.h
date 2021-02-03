@@ -1,3 +1,9 @@
+#ifndef _SORT_H_
+#define _SORT_H_
+#include "Sysutil.h"
+
+
+//÷±Ω”≤Â»Î≈≈–Ú
 void TwoWayInsertSort(int* arr, int left, int right)
 {
 	int* arr1 = (int*)malloc(sizeof(int)*(right - left + 1));
@@ -10,3 +16,4 @@ void TwoWayInsertSort(int* arr, int left, int right)
 			first = arr1 + right;
 	}
 }
+#endif
