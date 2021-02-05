@@ -79,4 +79,43 @@ void InsertSort_1(int* a, int left, int right)
 {
 
 }
+void _AdjustDown3(int* a, int start, int n)
+{
+	int i = start;
+	int j = 2 * i + 1;
+	int tmp = a[i];
+	while (j < n)
+	{
+		if (j + 1<n && a[j] < a[j + 1])
+			j = j + 1;
+
+		if (a[j] > tmp)
+		{
+			a[i] = a[j];
+			i = j;
+			j = 2 * i + 1;
+		}
+		else
+			break;
+	}
+	a[i] = tmp;
+}
+void AdjustDwon(int* a, int n, int root)
+{
+	int curpos = (n / 2) - 1;
+	while (curpos >= 0)
+	{
+		_AdjustDown3(a, curpos, n);
+		curpos--;
+	}
+	int end = n - 1;
+	while (end > 0)
+	{
+		int tmp = a[0];
+		a[0] = a[end];
+		a[end] = tmp;
+		end--;
+		_AdjustDown3(a, 0, --n);
+	}
+}
 #endif
