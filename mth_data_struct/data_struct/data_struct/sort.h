@@ -7,6 +7,9 @@
 // 插入排序
 void InsertSort(int* a, int n);
 void InsertSort_1(int* a, int left,int right);
+void InsertSort_2(int* a, int left, int right);
+void InsertSort_3(int* a, int left, int right);
+void BinInsertSort(int* a, int left, int right);
 
 // 希尔排序+
 void ShellSort(int* a, int n);
@@ -37,29 +40,23 @@ void MergeSort(int* a, int n);
 void MergeSortNonR(int* a, int n);
 // 计数排序
 void CountSort(int* a, int n);
-void printarr(int* a, int n);
+void printarr(int* a, int left,int right);
 
 
-void printarr(int* a, int n)
+void swap(int* a, int* b)
 {
-	for (int i = 0; i < n; i++)
+	int tmp;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+void printarr(int* a, int left,int right)
+{
+	for (int i = left; i < right; i++)
 		printf("%d ", a[i]);
 	printf("\n");
 }
-
-//直接插入排序
-//void TwoWayInsertSort(int* arr, int left, int right)
-//{
-//	int* arr1 = (int*)malloc(sizeof(int)*(right - left + 1));
-//	int* first, *final;
-//	first = final = arr1;
-//	arr1[0] = arr[0];
-//	for (int i = left + 1, i < right, i++)
-//	{
-//		if (arr[i] < *first)
-//			first = arr1 + right;
-//	}
-//}
+//直接插入排序（从前往后比较）
 void InsertSort(int* a, int n)
 {
 	for (int i = 1; i < n; ++i)
@@ -75,9 +72,110 @@ void InsertSort(int* a, int n)
 		a[k] = tmp;
 	}
 }
+//直接插入排序（从后往前比较交换 ）
 void InsertSort_1(int* a, int left, int right)
 {
+	int n = right - left;
+	for (int i = left + 1; i < right; i++)
+	{
+		int j = i;
+		while (j>=left && a[j] < a[j-1])
+		{
+			swap(&a[j], &a[j-1]);
+			j--;
+		}
+	}
+}
+//直接插入排序（从后往前）不交换
+void InsertSort_2(int* a, int left, int right)
+{
+	for (int i = left + 1; i < right; i++)
+	{
+		int j = i;
+		int tmp = a[j];
+		while (j>left && tmp < a[j - 1])
+		{
+			a[j] = a[j - 1];
+			j--;
+		}
+		a[j] = tmp;
+	}
+}
+//直接插入排序(哨兵位)
+void InsertSort_3(int* a, int left, int right)
+{
+	for (int i = left + 1; i < right; i++)
+	{
+		a[0] = a[i];
+		int j = i;
+		while (a[0] < a[j - 1])
+		{
+			a[j] = a[j - 1];
+			j--;
+		}
+		a[j] = a[0];
+	}
 
+}
+//二分折半插入排序
+void BinInsertSort(int* a, int left, int right)
+{
+	for (int i = left + 1; i<right; i++)
+	{
+		int tmp = a[i];
+		int low = left;
+		int high = i - 1;
+		while (low <= high)
+		{
+			int mid = (low + high) / 2;
+			if (tmp >= a[mid])
+				low = mid + 1;
+			else
+				high = mid - 1;
+		}
+		for (int j = i; j > low; j--)
+			a[j] = a[j - 1];
+		a[low] = tmp;
+	}
+}
+//二路插入排序
+void TwoWayInsertSort(int* a, int left, int right)
+{
+	int n = right - left;
+	int* arr1 = (int*)malloc(sizeof(int)*n);
+	int first, final;
+	first = final =0;
+	arr1[0] = a[0];
+	for (int i = left + 1; i < right; i++)
+	{
+		int tmp = a[i];
+		int j = final;
+		if (a[i] < a[first])
+		{
+			first = (first - 1 + n) % n;
+			arr1[first] = a[i];
+		}
+		else if (a[i]>a[final])
+		{
+			final = (final + 1) % n;
+			arr1[final] = a[i];
+		}
+		else
+		{
+			while (tmp < arr1[j])
+			{
+				arr1[j + 1] = arr1[j];
+				j--;
+			}
+			arr1[j + 1] = tmp;
+		}
+	}
+	for (int i = left; i < right; i++)
+	{
+		a[i] = arr1[first];
+		first = (first + 1) % n;
+	}
+	free(arr1);
 }
 void _AdjustDown3(int* a, int start, int n)
 {
@@ -118,4 +216,5 @@ void AdjustDwon(int* a, int n, int root)
 		_AdjustDown3(a, 0, --n);
 	}
 }
+
 #endif
