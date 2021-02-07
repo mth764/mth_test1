@@ -10,12 +10,14 @@ void InsertSort_1(int* a, int left,int right);
 void InsertSort_2(int* a, int left, int right);
 void InsertSort_3(int* a, int left, int right);
 void BinInsertSort(int* a, int left, int right);
-
+void TwoWayInsertSort(int* a, int left, int right);
 // œ£∂˚≈≈–Ú+
+void _ShellSort(int* a, int n, int grap);
 void ShellSort(int* a, int n);
 
 // —°‘Ò≈≈–Ú
-void SelectSort(int* a, int n);
+int GetMinIndex(int* a, int left, int right);
+void SelectSort(int* a, int left,int right);
 
 // ∂—≈≈–Ú
 void AdjustDwon(int* a, int n, int root);
@@ -148,26 +150,28 @@ void TwoWayInsertSort(int* a, int left, int right)
 	arr1[0] = a[0];
 	for (int i = left + 1; i < right; i++)
 	{
-		int tmp = a[i];
-		int j = final;
-		if (a[i] < a[first])
+		/*int tmp = a[i];*/
+		int j;
+		if (a[i] < arr1[first])
 		{
 			first = (first - 1 + n) % n;
 			arr1[first] = a[i];
 		}
-		else if (a[i]>a[final])
+		else if (a[i]>=arr1[final])
 		{
-			final = (final + 1) % n;
+			final = final+1;
 			arr1[final] = a[i];
 		}
 		else
 		{
-			while (tmp < arr1[j])
+			j = final;
+			while (a[i] < arr1[j])
 			{
-				arr1[j + 1] = arr1[j];
-				j--;
+				arr1[(j + 1)%n] = arr1[j];
+				j=(j-1+n)%n;
 			}
-			arr1[j + 1] = tmp;
+			arr1[(j + 1)%n] = a[i];
+			final++;
 		}
 	}
 	for (int i = left; i < right; i++)
@@ -177,9 +181,53 @@ void TwoWayInsertSort(int* a, int left, int right)
 	}
 	free(arr1);
 }
-void _AdjustDown3(int* a, int start, int n)
+//œ£∂˚≤Â»Î≈≈–Ú
+void _ShellSort(int* a, int n, int grap)
 {
-	int i = start;
+	for (int i = 0 + grap; i < n; i++)
+	{
+		int tmp = a[i];
+		int j = i;
+		while (j>0 && tmp < a[j - grap])
+		{
+			a[j] = a[j - grap];
+			j -= grap;
+		}
+		a[j] = tmp;
+	}
+}
+void ShellSort(int* a, int n)
+{
+	int grap[] = { 5, 3, 2, 1 };
+	int m = sizeof(grap) / sizeof(grap[0]);
+	for (int i = 0; i < m; i++)
+	{
+		_ShellSort(a, n, grap[i]);
+	}
+}
+//—°‘Ò≈≈–Ú
+int GetMinIndex(int* a, int left, int right)
+{
+	int min = left;
+	for (int i = left + 1; i < right; i++)
+	{
+		if (a[i] < a[min])
+			min = i;
+	}
+	return min;
+}
+void SelectSort(int* a, int left, int right)
+{
+	for (int i = left; i < right - 1; i++)
+	{
+		int index = GetMinIndex(a,i,right);
+		swap(&a[i], &a[index]);
+	}
+}
+//∂—≈≈–Ú
+void AdjustDwon(int* a, int n, int root)
+{
+	int i = root;
 	int j = 2 * i + 1;
 	int tmp = a[i];
 	while (j < n)
@@ -198,12 +246,12 @@ void _AdjustDown3(int* a, int start, int n)
 	}
 	a[i] = tmp;
 }
-void AdjustDwon(int* a, int n, int root)
+void HeapSort(int* a, int n)
 {
 	int curpos = (n / 2) - 1;
 	while (curpos >= 0)
 	{
-		_AdjustDown3(a, curpos, n);
+		AdjustDwon(a, n, curpos);
 		curpos--;
 	}
 	int end = n - 1;
@@ -212,8 +260,20 @@ void AdjustDwon(int* a, int n, int root)
 		int tmp = a[0];
 		a[0] = a[end];
 		a[end] = tmp;
+		AdjustDwon(a, end, 0);
 		end--;
-		_AdjustDown3(a, 0, --n);
+	}
+}
+//√∞≈›≈≈–Ú
+void BubbleSort(int* a, int n)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 0; j < n - i - 1; j++)
+		{
+			if (a[j] > a[j + 1])
+				swap(&a[j], &a[j + 1]);
+		}
 	}
 }
 
