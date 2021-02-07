@@ -47,8 +47,12 @@ int main()
 	BubbleSort(arr, n);
 	printarr(arr, 0, n);*/
 
-	printf("冒泡排序为:\n");
+	/*printf("冒泡排序为:\n");
 	BubbleSort(arr, n);
+	printarr(arr, 0, n);*/
+
+	printf("快速排序为:\n");
+	QuickSort(arr, 0, n);
 	printarr(arr, 0, n);
 	return 0;
 }

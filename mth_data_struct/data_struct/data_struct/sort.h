@@ -276,5 +276,68 @@ void BubbleSort(int* a, int n)
 		}
 	}
 }
+// 快速排序递归实现
+// 快速排序hoare版本
+int PartSort1(int* a, int left, int right)
+{
+	int low = left, high = right - 1;
+	int key = a[left];
+	while (low < high)
+	{
+		while (low<high && a[high]>key)
+			high--;
+		swap(&a[low], &a[high]);
+		while (low < high && a[low] <= key)
+			low++;
+		swap(&a[low], &a[high]);
+	}
+	return low;
+}
+// 快速排序挖坑法
+int PartSort2(int* a, int left, int right)
+{
+	int tmp = a[left];
+	int low = left, high = right - 1;
+	while (low < high)
+	{
+		while (low < high && tmp < a[high])
+			high--;
+		a[low] = a[high];
+		while (low<high && tmp>=a[low])
+			low++;
+		a[high] = a[low];
+	}
+	a[low] = tmp;
+	return low;
+}
+// 快速排序前后指针法
+int PartSort3(int* a, int left, int right)
+{
+	int pos = left;
+	int key = a[left];
+	for (int i = left + 1; i < right; i++)
+	{
+		if (a[i] < key)
+		{
+			pos++;
+			if (i != pos)
+				swap(&a[pos], &a[i]);
+		}
+	}
+	swap(&a[left], &a[pos]);
+	return pos;
+}
+void QuickSort(int* a, int left, int right)
+{
+	if (left >= right)
+		return;
+	/*int pos = PartSort1(a, left, right);*/
+	//int pos = PartSort2(a, left, right);
+	int pos = PartSort3(a, left, right);
+	QuickSort(a, left, pos);
+	QuickSort(a, pos+1, right);
+}
+// 快速排序 非递归实现
+void QuickSortNonR(int* a, int left, int right);
 
 #endif
