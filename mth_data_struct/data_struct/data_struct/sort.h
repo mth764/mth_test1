@@ -338,6 +338,50 @@ void QuickSort(int* a, int left, int right)
 	QuickSort(a, pos+1, right);
 }
 // 快速排序 非递归实现
-void QuickSortNonR(int* a, int left, int right);
+void QuickSortNonR(int* a, int left, int right)
+{
+
+}
+void _MergeSort(int* a, int left, int right, int* tmp)
+{
+	if (left >= right)
+		return;
+	int mid = (left + right) - 1;
+	_MergeSort(a, left, mid, tmp);
+	_MergeSort(a, mid+1, right, tmp);
+
+	//归并
+	int begin1 = left, end1 = mid;
+	int begin2 = mid + 1, end2 = right;
+	int k = left;
+	while (begin1 <= end1&&begin2 <= end2)
+	{
+		if (a[begin1] <= a[begin2])
+		{
+			tmp[k++] = a[begin1++];
+		}
+		else
+		{
+			tmp[k++] = a[begin2++];
+		}
+	}
+	while (begin1 <= end1)
+	{
+		tmp[k++] = a[begin1++];
+	}
+	while (begin2 <= end2)
+	{
+		tmp[k++] = a[begin2++];
+	}
+	memcpy(a + left, tmp + left, sizeof(int)*(right - left + 1));
+}
+void MergeSort(int* a, int n)
+{
+	int* tmp = (int*)malloc(sizeof(int)*n);
+	_MergeSort(a, 0, n - 1, tmp);
+	free(tmp);
+}
+
+
 
 #endif
