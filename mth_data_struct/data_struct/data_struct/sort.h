@@ -342,6 +342,7 @@ void QuickSortNonR(int* a, int left, int right)
 {
 
 }
+//归并排序
 void _MergeSort(int* a, int left, int right, int* tmp)
 {
 	if (left >= right)
@@ -380,6 +381,64 @@ void MergeSort(int* a, int n)
 	int* tmp = (int*)malloc(sizeof(int)*n);
 	_MergeSort(a, 0, n - 1, tmp);
 	free(tmp);
+}
+#include"List.h"
+#define K 3
+#define RADIX 10
+SList list[RADIX];
+int Getkey(int val, int k)
+{
+	int key;
+	for (int j = 0; j <= k; j++)
+	{
+		key = val % 10;
+		val /= 10;
+	}
+	/*while (k >= 0)
+	{
+		key = val % 10;
+		val /= 10;
+		k--;
+	}*/
+	return key;
+}
+void Distribute(int* a, int n, int i)
+{
+	
+	for (int j = 0; j < n; j++)
+	{
+		int key = Getkey(a[j], i);
+		SListPushBack(&list[key], a[j]);
+	}
+}
+void Collect(int* a)
+{
+	int k = 0;
+	for (int j = 0; j < RADIX; j++)
+	{
+		SListNode* p = list[j].head;
+		while (p != NULL)
+		{
+			a[k++] = p->data;
+			p = p->next;
+		}
+	}
+	for (int i = 0; i < RADIX; i++)
+	{
+		SListclear(&list[i]);
+	}
+}
+void CountSort(int* a, int n)
+{
+	for (int i = 0; i < RADIX; i++)
+		SListInit(&list[i]);
+	for (int i = 0; i < K; i++)
+	{
+		//分发
+		Distribute(a, n, i);
+		//回收
+		Collect(a);
+	}
 }
 
 

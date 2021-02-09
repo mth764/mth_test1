@@ -4,8 +4,10 @@ int main()
 {
 	int arr[10] = { 27, 15, 19, 18, 18, 34, 65, 49, 25, 37 };
 	int arr1[11] = { 0, 27, 15, 19, 18, 18, 34, 65, 49, 25, 37 };
+	int ar[] = { 278, 109, 63, 930, 589, 184, 505, 269, 8, 83 };
 	int n = sizeof(arr) / sizeof(arr[0]);
 	int n1 = sizeof(arr1) / sizeof(arr1[0]);
+	int n2 = sizeof(ar) / sizeof(ar[0]);
 
 	/*InsertSort(arr, n);
 	printf("直接插入排序(从前向后比较)为:\n");
@@ -55,8 +57,12 @@ int main()
 	QuickSort(arr, 0, n);
 	printarr(arr, 0, n);*/
 
-	printf("归并排序为:\n");
+	/*printf("归并排序为:\n");
 	MergeSort(arr, n);
-	printarr(arr, 0, n);
+	printarr(arr, 0, n);*/
+
+	printf("基数排序为:\n");
+	CountSort(ar, n2);
+	printarr(ar, 0, n2);
 	return 0;
 }
