@@ -30,5 +30,8 @@
     <ClCompile Include="day5.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="day6.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
