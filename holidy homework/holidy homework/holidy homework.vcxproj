@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="day.c" />
     <ClCompile Include="day1.c" />
     <ClCompile Include="day2.c" />
     <ClCompile Include="day3.c" />
