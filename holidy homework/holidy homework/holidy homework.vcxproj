@@ -73,6 +73,7 @@
     <ClCompile Include="day6.c" />
     <ClCompile Include="day7.c" />
     <ClCompile Include="day8.c" />
+    <ClCompile Include="day9.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
