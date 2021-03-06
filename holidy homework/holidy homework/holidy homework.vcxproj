@@ -67,6 +67,7 @@
     <ClCompile Include="day.c" />
     <ClCompile Include="day1.c" />
     <ClCompile Include="day11.c" />
+    <ClCompile Include="day12.c" />
     <ClCompile Include="day2.c" />
     <ClCompile Include="day3.c" />
     <ClCompile Include="day4.c" />
