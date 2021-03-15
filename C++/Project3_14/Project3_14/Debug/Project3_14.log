@@ -1,0 +1,13 @@
+﻿生成启动时间为 2021/3/15 21:47:11。
+     1>项目“D:\Github_workspace\mth_test1\C++\Project3_14\Project3_14\Project3_14.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         F:\software\Visual Studio\vs_install_later\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt data.cpp
+         data.cpp
+       Link:
+         F:\software\Visual Studio\vs_install_later\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Github_workspace\mth_test1\C++\Project3_14\Debug\Project3_14.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Github_workspace\mth_test1\C++\Project3_14\Debug\Project3_14.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Github_workspace\mth_test1\C++\Project3_14\Debug\Project3_14.lib" /MACHINE:X86 Debug\data.obj
+         Project3_14.vcxproj -> D:\Github_workspace\mth_test1\C++\Project3_14\Debug\Project3_14.exe
+     1>已完成生成项目“D:\Github_workspace\mth_test1\C++\Project3_14\Project3_14\Project3_14.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.90

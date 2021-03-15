@@ -3,6 +3,7 @@
 using namespace std;
 class Date
 {
+	friend ostream& operator<<(ostream& out,const Date& d1);
 public:
 	// 获取某年某月的天数
 	int GetMonthDay(int year, int month)
@@ -44,17 +45,36 @@ public:
 		return *this;
 	}
 	// 析构函数
-	~Date();
+	//~Date();
 	// 日期+=天数
 	Date& operator+=(int day)
 	{
-		whlie(day >= days[month])
+		int curday = GetMonthDay(_year,_month);
+		while(day >=curday)
 		{
-
+			if (_month + 1 > 12)
+			{
+				_year += 1;
+				_month = 0;
+			}
+			_month += 1;
+			day = day - curday;
+			curday = GetMonthDay(_year, _month);
 		}
+		if (_day + day > curday)
+		{
+			_month += 1;
+			day = day - (curday - _day);
+			_day = 0;
+		}
+		_day += day;
+		return *this;
 	}
 	// 日期+天数
-	Date operator+(int day);
+	Date operator+(int day)
+	{
+
+	}
 	// 日期-天数
 	Date operator-(int day);
 	// 日期-=天数
@@ -86,8 +106,16 @@ private:
 	int _month;
 	int _day;
 };
+ostream& operator<<(ostream& out, const Date& d1)
+{
+	out << d1._year << "年" << d1._month << "月" << d1._day << "日";
+	return out;
+}
 int main()
 {
-	
+	Date d0(2021, 3, 15);
+	//Date d1;
+	d0 += 18;//18
+	cout << d0;
 	return 0;
 }
